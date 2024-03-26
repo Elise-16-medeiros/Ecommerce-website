@@ -3,12 +3,14 @@ import { CreditCard, DollarSign, UsersRound } from "lucide-react";
 
 export const Cards = () => {
   return (
-    <div className=" flex flex-col justify-center items-center gap-5 md:flex-row">
-      <Card className="w-64 shadow-xl">
+    <div className=" m-5 flex flex-col items-center justify-around gap-5 md:flex-row">
+      <Card className="w-64 border border-gray-200 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex justify-between gap-5 text-lg">
-            <p className="text-gray-700 capitalize">total revenue</p>
-            <DollarSign className="text-gray-400" />
+          <CardTitle className="flex justify-between gap-5">
+            <p className="text-base font-semibold capitalize text-gray-700">
+              total revenue
+            </p>
+            <DollarSign size={18} className="text-gray-500" />
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -16,11 +18,13 @@ export const Cards = () => {
         </CardContent>
       </Card>
 
-      <Card className="w-64 shadow-xl">
+      <Card className="w-64 border border-gray-200 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex justify-between gap-5 text-lg">
-            <p className="text-gray-700 capitalize">total sales</p>
-            <CreditCard className="text-gray-400" />
+          <CardTitle className="flex justify-between gap-5">
+            <p className="text-base font-semibold capitalize text-gray-700">
+              total sales
+            </p>
+            <CreditCard size={18} className="text-gray-500" />
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -28,11 +32,13 @@ export const Cards = () => {
         </CardContent>
       </Card>
 
-      <Card className="w-64 shadow-xl">
+      <Card className="w-64 border border-gray-200 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex justify-between gap-5 text-lg">
-            <p className="text-gray-700 capitalize">total customers</p>
-            <UsersRound className="text-gray-400" />
+          <CardTitle className="flex justify-between gap-5">
+            <p className="text-base font-semibold capitalize text-gray-700">
+              total customers
+            </p>
+            <UsersRound size={18} className="text-gray-500" />
           </CardTitle>
         </CardHeader>
         <CardContent>
