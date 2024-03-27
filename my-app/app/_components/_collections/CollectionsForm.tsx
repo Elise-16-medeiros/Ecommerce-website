@@ -3,8 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 import Heading from "../heading";
+import { ImageUpload } from "../imageUpload";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,8 +20,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { useState } from "react";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -28,6 +31,8 @@ const formSchema = z.object({
 
 export const CollectionsForm = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,9 +42,17 @@ export const CollectionsForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/collections", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+    } catch (err) {
+      console.log("[collections_POST]", err);
+    }
+  };
 
   return (
     <section className="h-full w-full">
@@ -79,16 +92,27 @@ export const CollectionsForm = () => {
                     </FormItem>
                   )}
                 />
-                <div className="my-5 grid w-full max-w-sm items-center gap-1.5">
-                  <Label htmlFor="picture">Picture</Label>
-                  <Input id="picture" type="file" />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Image</FormLabel>
+                      <FormControl>
+                        <ImageUpload
+                          value={field.value ? [field.value] : []}
+                          onChange={(url) => field.onChange(url)}
+                          onRemove={() => field.onChange("")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </CardContent>
               <CardFooter>
                 <div className="flex items-center gap-4">
-                  <Button type="submit" variant="outline">
-                    Submit
-                  </Button>
+                  <Button type="submit">Submit</Button>
                   <Button
                     type="button"
                     variant="destructive"
@@ -105,18 +129,3 @@ export const CollectionsForm = () => {
     </section>
   );
 };
-
-/* 
-<Card>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card Description</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>Card Content</p>
-  </CardContent>
-  
-    <p>Card Footer</p>
-  </CardFooter>
-</Card>
- */
