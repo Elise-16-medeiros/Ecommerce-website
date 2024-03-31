@@ -29,6 +29,7 @@ model Product {
   updatedAt   DateTime       @updatedAt
   orders      ProductOrder[]
   productId   String
+  isDisposable Boolean       @default(true)
 }
 
 model User {
