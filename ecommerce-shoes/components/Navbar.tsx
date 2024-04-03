@@ -7,7 +7,7 @@ import { Children, ComponentProps, ReactNode } from "react";
 
 export default function Navbar({ children }: { children: ReactNode }) {
   return (
-    <nav className="flex justify-center bg-primary px-4 text-primary-foreground">
+    <nav className="flex justify-between bg-primary px-4 py-2 text-primary-foreground">
       {children}
     </nav>
   );
