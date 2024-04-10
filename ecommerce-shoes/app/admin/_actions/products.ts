@@ -1,9 +1,9 @@
 "use server";
 
-import { notFound, redirect, useRouter } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod";
-import fs from 'fs/promises'
+import fs from 'fs/promises';
 import prisma from "@/lib/prisma";
 
 
@@ -22,14 +22,18 @@ const addSchema = z.object({
   price: z.coerce.number().int().min(1),
   image: imageSchema.refine(file => file.size > 0, "Required"), 
   category: z.string().min(1),
-  tags: z.array(z.string().min(1)),
-  sizes: z.array(z.string().min(1)),
-  colors: z.array(z.string().min(1)),
+  /* tags: z.string().min(1),
+  sizes: z.string().min(1),
+  colors: z.string().min(1), */
+
+  /* tags: z.array(z.string()),
+  sizes: z.array(z.string()),
+  colors: z.array(z.string()), */
 });
 
 
 
-export async function addProduct(formData: FormData) {
+export async function addProduct(prevState:unknown, formData: FormData) {
     const result = addSchema.safeParse(Object.fromEntries(formData.entries()))
     if (result.success === false) {
         return result.error.formErrors.fieldErrors
@@ -46,22 +50,22 @@ export async function addProduct(formData: FormData) {
 
       await prisma.product.create({
         data: {
+          isDisposable: false,
             name: data.name,
             description: data.description,
-            image: [data.image.name],
+            image: [],
             category: data.category,
             price: data.price,
-            tags: data.tags,
+           /*  tags: data.tags,
             sizes: data.sizes,
-            colors: data.colors,
+            colors: data.colors, */
         }
     })
 
     
-  const router = useRouter();
-  router.replace("/admin/products");
-    /* revalidatePath("/")
+ 
+     revalidatePath("/")
     revalidatePath("/products")
   
-    redirect("/admin/products") */
+    redirect("/admin/products") 
 }
