@@ -14,7 +14,6 @@ export default function AdminLayout({
         <div>Logo</div>
         <div>
           <NavLink href="/admin">Dashboard</NavLink>
-          <NavLink href="/admin/collections">Collections</NavLink>
           <NavLink href="/admin/products">Products</NavLink>
           <NavLink href="/admin/orders">Sales</NavLink>
           <NavLink href="/admin/customers">Customers</NavLink>

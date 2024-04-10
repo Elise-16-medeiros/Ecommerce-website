@@ -3,13 +3,15 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
-export async function CreateProduct(req: NextRequest) {
+export const POST = async (req: NextRequest) => {
   try {
     const { userId } = auth();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
+
+    new PrismaClient();
 
     const {
       title,
@@ -45,13 +47,13 @@ export async function CreateProduct(req: NextRequest) {
       },
     });
 
-    await newProduct.save();
+    return NextResponse.json(newProduct);
 
     if (collections) {
       for (const collectionId of collections) {
-        const collection = await Collection.findById(collectionId);
+        const collection = await collections.findById(collectionId);
         if (collection) {
-          collection.products.push(newProduct._id);
+          collection.products.push(newProduct.id);
           await collection.save();
         }
       }
@@ -62,15 +64,16 @@ export async function CreateProduct(req: NextRequest) {
     console.log("[products_POST]", err);
     return new NextResponse("Internal Error", { status: 500 });
   }
-}
+};
 
 export const GET = async (req: NextRequest) => {
   try {
-    await connectToDB();
+    new PrismaClient();
 
-    const products = await Product.find()
-      .sort({ createdAt: "desc" })
-      .populate({ path: "collections", model: Collection });
+    const products = await prisma.product.findUnique(
+      { where: { id } 
+    
+    }
 
     return NextResponse.json(products, { status: 200 });
   } catch (err) {

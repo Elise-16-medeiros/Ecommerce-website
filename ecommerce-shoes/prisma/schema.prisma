@@ -14,22 +14,19 @@ datasource db {
 }
 
 model Product {
-  id          String         @id @default(uuid())
-  title       String
-  description String
-  media       String[]
-  category    String
-  collections Collection[]
-  tags        String[]
-  sizes       String[]
-  colors      String[]
-  price       Float
-  expense     Float
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
-  orders      ProductOrder[]
-  productId   String
-  isDisposable Boolean       @default(true)
+  id           String         @id @default(uuid())
+  name         String
+  description  String
+  image        String[]
+  category     String
+  tags         String[]
+  sizes        String[]
+  colors       String[]
+  price        Float
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  orders       ProductOrder[]
+  isDisposable Boolean        @default(true)
 }
 
 model User {
@@ -40,16 +37,6 @@ model User {
   orders    Order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model Collection {
-  id          String    @id @default(uuid())
-  title       String    @unique
-  description String?
-  image       String?
-  products    Product[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
 }
 
 model Order {
