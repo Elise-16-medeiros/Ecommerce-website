@@ -1,4 +1,9 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,13 +13,14 @@ import { formatCurrency } from "@/lib/formatters";
 import { useState } from "react";
 import { addProduct } from "../../_actions/products";
 import { useFormState, useFormStatus } from "react-dom";
-
 export default function ProductForm() {
   const [error, action] = useFormState(addProduct,{})
   const [price, setPrice] = useState<number>(0);
 
+ 
   return (
-    <form action={action} className="space-y-8">
+
+   <form action={action} className="space-y-8">
       <div className="space-y-2 w-96">
         <Label htmlFor="name">Name</Label>
         <Input type="text" id="name" name="name" required />
@@ -52,7 +58,7 @@ export default function ProductForm() {
         <Input type="text" id="category" name="category" required />
         {error?.category && (<div className="text-destructive">{error.category}</div>)}
       </div>
-     {/*  <div className="space-y-2 w-48">
+       <div className="space-y-2 w-48">
         <Label htmlFor="tags">Tags</Label>
         <Input type="text" id="tags" name="Tags" required />
         {error?.tags && (<div className="text-destructive">{error.tags}</div>)}
@@ -66,15 +72,19 @@ export default function ProductForm() {
         <Label htmlFor="colors">Colors</Label>
         <Input type="text" id="colors" name="colors" required />
         {error?.colors && (<div className="text-destructive">{error.colors}</div>)}
-      </div> */}
+      </div> 
       </div>
 
       <SubmitButton/>
-    </form>
+    </form> 
+
   );
+
+
 }
 
-function SubmitButton() {
+ function SubmitButton() {
   const { pending } = useFormStatus()
 return  <Button type="submit" variant='default' disabled={pending}>{pending ? 'Saving...' : 'Save'}</Button>
-}
+} 
+

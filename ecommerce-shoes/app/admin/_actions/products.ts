@@ -22,13 +22,11 @@ const addSchema = z.object({
   price: z.coerce.number().int().min(1),
   image: imageSchema.refine(file => file.size > 0, "Required"), 
   category: z.string().min(1),
-  /* tags: z.string().min(1),
-  sizes: z.string().min(1),
-  colors: z.string().min(1), */
 
-  /* tags: z.array(z.string()),
+
+   tags: z.array(z.string()),
   sizes: z.array(z.string()),
-  colors: z.array(z.string()), */
+  colors: z.array(z.string()), 
 });
 
 
@@ -56,9 +54,9 @@ export async function addProduct(prevState:unknown, formData: FormData) {
             image: [],
             category: data.category,
             price: data.price,
-           /*  tags: data.tags,
+            tags: data.tags,
             sizes: data.sizes,
-            colors: data.colors, */
+            colors: data.colors, 
         }
     })
 
