@@ -13,6 +13,7 @@ import { formatCurrency } from "@/lib/formatters";
 import { useState } from "react";
 import { addProduct } from "../../_actions/products";
 import { useFormState, useFormStatus } from "react-dom";
+import Uploadcare from "../../_components/Uploadcare";
 export default function ProductForm() {
   const [error, action] = useFormState(addProduct,{})
   const [price, setPrice] = useState<number>(0);
@@ -48,8 +49,9 @@ export default function ProductForm() {
       </div>
       <div className="space-y-2 w-96">
         <Label htmlFor="image">Image</Label>
-        <Input type="file" id="image" name="image" required />
-        {error?.image && (<div className="text-destructive">{error.image}</div>)}
+        <Uploadcare />
+        {/* <Input type="file" id="image" name="image" required />
+        {error?.image && (<div className="text-destructive">{error.image}</div>)} */}
       </div>
 
       <div className="grid grid-cols-4 gap-3">

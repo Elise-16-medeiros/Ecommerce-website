@@ -17,7 +17,6 @@ model Product {
   id           String         @id @default(uuid())
   name         String
   description  String
-  image        String[]
   category     String
   tags         String[]
   sizes        String[]
@@ -72,4 +71,9 @@ model Address {
   postalCode String
   country    String
   orders     Order[]
+}
+
+model Image {
+  id      Int      @id @default(autoincrement())
+  ucareId String[] @unique
 }
