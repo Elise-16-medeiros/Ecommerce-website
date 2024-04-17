@@ -1,3 +1,6 @@
-export default function Home() {
-  return <><h1>Hello!</h1></>;
+'use client'
+export default function AppPage() {
+  return (
+    <div>AppPage</div>
+  )
 }
