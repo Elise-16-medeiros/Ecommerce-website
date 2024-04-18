@@ -17,15 +17,7 @@ useEffect(() => {
   }
 }, [isOpen, onOpen]);
 
-  return (
-   <>
-   <UserButton afterSignOutUrl="/" />
-
-   <div className="p-4">
-  
-   </div>
-   </>
-  );
+  return null;
 }
 
 
