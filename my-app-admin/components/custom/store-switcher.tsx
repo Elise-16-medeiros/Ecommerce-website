@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Store } from "@prisma/client";
 import { useStoreModal } from "@/hooks/use-store-modal";
+import { cn } from "@/lib/utils";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
-import { Check, ChevronsUpDown, PlusCircle, Store as StoreIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "../ui/command";
+import { Check, ChevronsUpDown, PlusCircle, Store as StoreIcon } from "lucide-react";
+
+
 
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
@@ -17,11 +19,11 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 
 interface StoreSwitcherProps extends PopoverTriggerProps {
   items: Store[];
-}
+};
 
 export default function StoreSwitcher({
   className,
-  items = [],
+  items = []
 }: StoreSwitcherProps) {
   const storeModal = useStoreModal();
   const params = useParams();
@@ -29,7 +31,7 @@ export default function StoreSwitcher({
 
   const formattedItems = items.map((item) => ({
     label: item.name,
-    value: item.id,
+    value: item.id
   }));
 
   const currentStore = formattedItems.find(
@@ -38,7 +40,7 @@ export default function StoreSwitcher({
 
   const [open, setOpen] = useState(false);
 
-  const onStoreSelect = (store: { value: string; label: string }) => {
+  const onStoreSelect = (store: { value: string, label: string }) => {
     setOpen(false);
     router.push(`/${store.value}`);
   };
@@ -80,17 +82,17 @@ export default function StoreSwitcher({
                   
                     </CommandItem>
                   ))}
-
                 </CommandGroup>
             </CommandList>
             <CommandSeparator/>
             <CommandList>
               <CommandGroup>
                 <CommandItem
-                onSelect={() =>{
+                onSelect={() => {
                   setOpen(false);
                  storeModal.onOpen();
-                }}>
+                }}
+                >
 <PlusCircle className="mr-2 h-5 w-5" />
 Create Store
                 </CommandItem>

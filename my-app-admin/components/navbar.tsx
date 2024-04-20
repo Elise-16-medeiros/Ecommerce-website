@@ -1,8 +1,8 @@
-import { UserButton, auth } from "@clerk/nextjs";
-import { MainNav } from "./main-nav";
-import StoreSwitcher from "./custom/store-switcher";
+ import { UserButton, auth } from "@clerk/nextjs"; 
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
+import { MainNav } from "./main-nav";
+import StoreSwitcher from "./custom/store-switcher";
 
 export default async function Navbar() {
 const { userId } = auth();
@@ -22,7 +22,7 @@ if(!userId) {
        <StoreSwitcher items={stores}/>
        <MainNav className="mx-6"/>
        <div className="ml-auto flex items-center space-x-4">
-        <UserButton afterSignOutUrl="/"/>   
+       /*  <UserButton afterSignOutUrl="/"/>   */
        </div>
      </div>
    </div>

@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.12",
+    "@clerk/nextjs": "^5.0.1",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.12.1",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -21,7 +21,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
     "lucide-react": "^0.370.0",
-    "next": "14.2.1",
+    "next": "^14.2.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
