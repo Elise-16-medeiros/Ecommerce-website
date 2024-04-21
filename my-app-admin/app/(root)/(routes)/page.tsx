@@ -2,7 +2,7 @@
 
 import Modal from "@/components/custom/modal";
 import { useStoreModal } from "@/hooks/use-store-modal";
-import { UserButton } from "@clerk/nextjs";
+
 import { useEffect } from "react";
 
 
