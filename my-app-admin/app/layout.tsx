@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-
 import { Urbanist } from "next/font/google";
-
-
-import ToasterProvider from "@/providers/toaster-provider";
-import ModalProvider from "@/providers/modal-provider";
+import AuthProvider from "./_provider-auth/auth";
 
 import "./globals.css";
 
@@ -24,27 +20,11 @@ export default function RootLayout({
   
       <html lang="en">
         <body className={font.className}>
-        <ToasterProvider />
-          <ModalProvider />
+          <AuthProvider>
           {children}
+          </AuthProvider>
           </body>
       </html>
     
   );
 }
-
-/* 
-import { ClerkProvider } from '@clerk/nextjs'
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
-  )
-} */
