@@ -1,21 +1,25 @@
 'use client'
 
+import LoginButton from "@/components/auth/login-button";
 import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 
-export default function Page() {
-    const router = useRouter();
 
-    const handleClick = () => {
-      router.push('/admin');
-    };
+export default function Home() {
+ 
   
 
 
     return (
-       <Button className="m-4"
-       onClick={handleClick}>Admin</Button>
+       <main className="fle h-full flex-col items-center justify-center">
+<div className="space-y-6">
+  <h1 className="text-lg font-semibold">Home page</h1>
+  <div>
+    <LoginButton>
+      <Button size='lg'>Sign in</Button>
+    </LoginButton>
+  </div>
+</div>
+       </main>
     )
 }
