@@ -1,6 +1,6 @@
 "use client";
 
-import { LogIn } from "lucide-react";
+import { LockKeyhole } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardFooter } from "../ui/card";
 import Image from "next/image";
@@ -74,8 +74,8 @@ function HeaderAuth({ label }: HeaderAuthProps) {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-y-4">
       <span className="flex items-center gap-x-2">
-        <LogIn />
-        <h1 className="text-3xl font-semibold">Login</h1>
+      <LockKeyhole />
+        <h1 className="text-3xl font-semibold">Authentication</h1>
       </span>
       <p className="text-sm text-muted-foreground">{label}</p>
     </div>
