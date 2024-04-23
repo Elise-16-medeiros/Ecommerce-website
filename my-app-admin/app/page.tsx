@@ -15,6 +15,7 @@ export default function Page() {
 
 
     return (
-       <Button onClick={handleClick}>Admin</Button>
+       <Button className="m-4"
+       onClick={handleClick}>Admin</Button>
     )
 }

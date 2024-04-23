@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
-import AuthProvider from "./_provider-auth/auth";
+/* import AuthProvider from "./_provider-auth/auth"; */
 
 import "./globals.css";
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   
       <html lang="en">
         <body className={font.className}>
-          <AuthProvider>
+        
           {children}
-          </AuthProvider>
+          
           </body>
       </html>
     

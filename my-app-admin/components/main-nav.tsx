@@ -5,17 +5,18 @@ import Link from "next/link";
 import { cn } from "@/lib/utils"
 export function MainNav({
     className,
-    ...propos
+    ...props
 }: React.HTMLAttributes<HTMLElement>) {
     const pathname = usePathname();
     const params = useParams();
 
 const routes = [
     {
-        href: `/${params.storedId}/settings`,   
-        label:'Settings',
-        active: pathname === `/${params.storedId}/settings`
+        href: "/admin/settings",   
+        label:"Settings",
+        active: pathname === "/admin/settings"
     },
+    
 ];
 
     return (
@@ -32,3 +33,11 @@ const routes = [
     </nav>
     )
 }
+
+/* const routes = [
+    {
+        href: `/${params.storedId}/settings`,   
+        label:'Settings',
+        active: pathname === `/${params.storedId}/settings`
+    },
+]; */
