@@ -20,11 +20,10 @@ import { Button } from "../ui/button";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
 
-
 export default function LoginForm() {
-  const [error, setError] = useState<string | undefined>('');
-  const [success, setSuccess] = useState<string | undefined>('');
-const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -33,19 +32,17 @@ const [isPending, startTransition] = useTransition();
       password: "",
     },
   });
-const onSubmit = (values: z.infer<typeof LoginSchema>) =>{
-setError('');
-setSuccess('');
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    setError("");
+    setSuccess("");
 
-
-startTransition(() =>{
-  login(values)
-  .then((data) =>{
-setError(data.error)
-setSuccess(data.success)
-  })
-});
-}
+    startTransition(() => {
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
+  };
 
   return (
     <CardWrapper
@@ -95,10 +92,11 @@ setSuccess(data.success)
               )}
             />
           </div>
-          <FormError message={error}/>
-          <FormSuccess message={success}/>
-          <Button disabled={isPending}
-           type="submit" className="w-full">Login</Button>
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button disabled={isPending} type="submit" className="w-full">
+            Login
+          </Button>
         </form>
       </Form>
     </CardWrapper>
