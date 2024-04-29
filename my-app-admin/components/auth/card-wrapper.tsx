@@ -3,8 +3,8 @@
 import { LockKeyhole } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardFooter } from "../ui/card";
-import Image from "next/image";
 import Link from "next/link";
+import { Social } from "./social";
 
 type CardWrapperProps = {
   children: React.ReactNode;
@@ -21,6 +21,8 @@ export default function CardWrapper({
   backButtonHref,
   showSocial,
 }: CardWrapperProps) {
+
+ 
   return (
     <Card className="w-[400px] shadow-sm">
       <CardHeader className="flex items-center justify-center">
@@ -29,34 +31,7 @@ export default function CardWrapper({
       <CardContent>{children}</CardContent>
       {showSocial && (
         <CardFooter>
-          <div className="flex w-full items-center gap-x-2">
-            <Button
-              size="default"
-              className="w-full"
-              variant="outline"
-              onClick={() => {}}
-            >
-              <Image
-                src="/icons8-google.svg"
-                width={30}
-                height={30}
-                alt="Logo google"
-              />
-            </Button>
-            <Button
-              size="default"
-              className="w-full"
-              variant="outline"
-              onClick={() => {}}
-            >
-              <Image
-                src="/icons8-facebook.svg"
-                width={35}
-                height={35}
-                alt="Logo facebook"
-              />
-            </Button>
-          </div>
+        <Social />
         </CardFooter>
       )}
 

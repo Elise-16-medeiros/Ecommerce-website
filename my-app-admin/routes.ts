@@ -11,6 +11,7 @@ export const publicRoutes = [
 export const privateRoutes = [
     '/auth/login',
     '/auth/register',
+    '/auth/error',
 ];
 
 /** 
