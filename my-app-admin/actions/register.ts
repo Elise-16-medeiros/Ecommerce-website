@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt'
 import prismadb from '@/lib/prismadb';
 import { RegisterSchema } from '@/schemas';
 import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/data/tokens';
+
 
 
 
@@ -32,7 +34,7 @@ await prismadb.user.create({
    },
 });
 
+const verificationToken = await generateVerificationToken(email)
 
-
-   return { success: 'User created' };
+   return { success: 'Confirmation email sent' };
 };
